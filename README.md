@@ -4,4 +4,4 @@ Implement a caesar cipher that takes in a string and the shift factor and then o
 
     caesar_cipher("What a string!", 5) => "Bmfy f xywnsl!
 
-(Project "Sub Strings is also inside this repository)
+(Project "Sub Strings" is also inside this repository)
