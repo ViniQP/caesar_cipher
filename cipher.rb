@@ -1,35 +1,36 @@
 def caesar_cipher(string, key)
   string_ord = []
-  splitted_string = string.downcase.split("")
+  splitted_string = string.split("")
 
-  p splitted_string
   # convert split string to integer ordinal 
-  splitted_string.each do |letter|
-    string_ord.push(letter.ord)
-  end
-  p string_ord
+  splitted_string.each { |letter| string_ord.push(letter.ord)}
   
-  # sum key to string.ord() array values
+  # sum key to array converted values
   string_ord_key = string_ord.map do |integer|
     sum_index = integer + key
-    if integer < 96 
+    if integer < 65 || integer > 122
       integer
-    elsif sum_index <= 122
-      integer += key
-    elsif sum_index > 122
-      sum = integer + (key - 1)
-      sum -= 122
-      integer = 97 + sum
+    elsif integer.between?(65, 90)
+      if sum_index <= 90
+        integer += key
+      elsif sum_index > 90
+        sum = integer + (key - 1)
+        sum -= 90
+        integer = 65 + sum
+      end
+    elsif integer.between?(97, 122)
+      if sum_index <= 122
+        integer += key
+      elsif sum_index > 122
+        sum = integer + (key - 1)
+        sum -= 122
+        integer = 97 + sum
+      end
     end
   end
 
-  p string_ord_key
-
-  # convert to caesar string and return string
-  converted_caesar = string_ord_key.map do |integer|
-    integer.chr
-  end
-  return converted_caesar.join
+  # convert to string and return it
+  string_ord_key.map { |integer| integer.chr }.join
 end
 
-puts caesar_cipher("what a string!", 5)
+puts caesar_cipher("What a string!", 5)
